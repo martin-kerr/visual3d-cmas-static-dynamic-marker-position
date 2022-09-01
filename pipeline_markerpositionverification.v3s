@@ -1,4 +1,7 @@
 Interpolate
+!
+!Fills gaps in marker trajectories greater than 10 frames
+!
 /SIGNAL_TYPES=TARGET
 ! /SIGNAL_NAMES=
 ! /SIGNAL_FOLDER=ORIGINAL
