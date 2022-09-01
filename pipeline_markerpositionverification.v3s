@@ -1,0 +1,202 @@
+Interpolate
+/SIGNAL_TYPES=TARGET
+! /SIGNAL_NAMES=
+! /SIGNAL_FOLDER=ORIGINAL
+! /RESULT_SUFFIX=
+/RESULT_FOLDER=PROCESSED
+ /MAXIMUM_GAP=10
+! /NUM_FIT=3
+! /POLYNOMIAL_ORDER=3
+;
+
+Lowpass_Filter
+!
+!Low pass filter  of rod and floor marker trajectories with 6Hz cutoff
+!
+/SIGNAL_TYPES=TARGET
+! /SIGNAL_NAMES=
+/SIGNAL_FOLDER=PROCESSED
+! /RESULT_SUFFIX=
+/RESULT_FOLDER=PROCESSED
+! /FILTER_CLASS=BUTTERWORTH
+ /FREQUENCY_CUTOFF=6.0
+! /NUM_REFLECTED=6
+! /TOTAL_BUFFER_SIZE=6
+! /NUM_BIDIRECTIONAL_PASSES=1
+;
+
+Evaluate_Expression
+!
+!Stores 3d distance between FP10  and FP40 markers (total length of forceplates) as a derived value
+!
+/EXPRESSION=distance(target::processed::FP10,target::processed::FP40)
+/RESULT_NAME=FORCE PLATFORM AREA LENGTH
+/RESULT_TYPE=DERIVED
+ /RESULT_FOLDER=PROCESSED
+;
+
+Evaluate_Expression
+!
+!Stores 3d distance between FP10  and FP1Z markers ( width of forceplates) as a derived value
+!
+/EXPRESSION=distance(target::processed::FP10,target::processed::FP1Z)
+/RESULT_NAME=FORCE PLATFORM AREA WIDTH
+/RESULT_TYPE=DERIVED
+ /RESULT_FOLDER=PROCESSED
+;
+
+Evaluate_Expression
+!
+!Stores 3d distance between markers at top and bottom of rod as a derived value
+!
+/EXPRESSION=distance(target::processed::BOT1,target::processed::TOP1)
+/RESULT_NAME=Rod markers Top to Bottom
+/RESULT_TYPE=DERIVED
+ /RESULT_FOLDER=PROCESSED
+;
+
+Metric_Mean
+!
+!Stores mean value of floor marker FP1Z xyz coordinates over the acquisition
+!
+/RESULT_METRIC_NAME=MEAN
+/APPLY_AS_SUFFIX_TO_SIGNAL_NAME=TRUE
+! /RESULT_METRIC_FOLDER=PROCESSED
+/SIGNAL_TYPES=TARGET
+/SIGNAL_NAMES=FP1Z
+/SIGNAL_FOLDER=PROCESSED
+/SIGNAL_COMPONENTS=
+/COMPONENT_SEQUENCE=ALL
+/EVENT_SEQUENCE=
+/EXCLUDE_EVENTS=
+/GENERATE_MEAN_AND_STDDEV=FALSE
+! /APPEND_TO_EXISTING_VALUES=FALSE
+;
+
+Metric_Mean
+!
+!Stores mean value of floor marker FP40 xyz coordinates over the acquisition
+!
+/RESULT_METRIC_NAME=MEAN
+/APPLY_AS_SUFFIX_TO_SIGNAL_NAME=TRUE
+! /RESULT_METRIC_FOLDER=PROCESSED
+/SIGNAL_TYPES=TARGET
+/SIGNAL_NAMES=FP40
+/SIGNAL_FOLDER=PROCESSED
+/SIGNAL_COMPONENTS=
+/COMPONENT_SEQUENCE=ALL
+/EVENT_SEQUENCE=
+/EXCLUDE_EVENTS=
+/GENERATE_MEAN_AND_STDDEV=FALSE
+! /APPEND_TO_EXISTING_VALUES=FALSE
+;
+
+Metric_Mean
+!
+!Stores mean value of floor marker FP4Z xyz coordinates over the acquisition
+!
+/RESULT_METRIC_NAME=MEAN
+/APPLY_AS_SUFFIX_TO_SIGNAL_NAME=TRUE
+! /RESULT_METRIC_FOLDER=PROCESSED
+/SIGNAL_TYPES=TARGET
+/SIGNAL_NAMES=FP4Z
+/SIGNAL_FOLDER=PROCESSED
+/SIGNAL_COMPONENTS=
+/COMPONENT_SEQUENCE=ALL
+/EVENT_SEQUENCE=
+/EXCLUDE_EVENTS=
+/GENERATE_MEAN_AND_STDDEV=FALSE
+! /APPEND_TO_EXISTING_VALUES=FALSE
+;
+
+Metric_Mean
+!
+!Stores mean value of floor marker FP10 xyz coordinates over the acquisition
+!
+/RESULT_METRIC_NAME=MEAN
+/APPLY_AS_SUFFIX_TO_SIGNAL_NAME=TRUE
+! /RESULT_METRIC_FOLDER=PROCESSED
+/SIGNAL_TYPES=TARGET
+/SIGNAL_NAMES=FP10
+/SIGNAL_FOLDER=PROCESSED
+/SIGNAL_COMPONENTS=
+/COMPONENT_SEQUENCE=ALL
+/EVENT_SEQUENCE=
+/EXCLUDE_EVENTS=
+/GENERATE_MEAN_AND_STDDEV=FALSE
+! /APPEND_TO_EXISTING_VALUES=FALSE
+;
+
+Metric_Mean
+!
+!Stores mean value of 'Rod markers Top to Bottom' distance over the acquisition
+!
+/RESULT_METRIC_NAME=MEAN
+/APPLY_AS_SUFFIX_TO_SIGNAL_NAME=TRUE
+ /RESULT_METRIC_FOLDER=PROCESSED
+/SIGNAL_TYPES=DERIVED
+/SIGNAL_NAMES=Rod markers Top to Bottom
+/SIGNAL_FOLDER=PROCESSED
+/SIGNAL_COMPONENTS=
+/COMPONENT_SEQUENCE=ALL
+/EVENT_SEQUENCE=
+/EXCLUDE_EVENTS=
+/GENERATE_MEAN_AND_STDDEV=FALSE
+! /APPEND_TO_EXISTING_VALUES=FALSE
+;
+
+Metric_Mean
+!
+!Stores mean value of force plate length over the acquisition
+!
+/RESULT_METRIC_NAME=MEAN
+/APPLY_AS_SUFFIX_TO_SIGNAL_NAME=TRUE
+/RESULT_METRIC_FOLDER=PROCESSED
+/SIGNAL_TYPES=DERIVED
+/SIGNAL_NAMES=FORCE PLATFORM AREA LENGTH
+/SIGNAL_FOLDER=PROCESSED
+/SIGNAL_COMPONENTS=
+/COMPONENT_SEQUENCE=ALL
+/EVENT_SEQUENCE=
+/EXCLUDE_EVENTS=
+/GENERATE_MEAN_AND_STDDEV=FALSE
+! /APPEND_TO_EXISTING_VALUES=FALSE
+;
+
+Metric_Mean
+!
+!Stores mean value of force plate width over the acquisition
+!
+/RESULT_METRIC_NAME=MEAN
+/APPLY_AS_SUFFIX_TO_SIGNAL_NAME=TRUE
+/RESULT_METRIC_FOLDER=PROCESSED
+/SIGNAL_TYPES=DERIVED
+/SIGNAL_NAMES=FORCE PLATFORM AREA WIDTH
+/SIGNAL_FOLDER=PROCESSED
+/SIGNAL_COMPONENTS=
+/COMPONENT_SEQUENCE=ALL
+/EVENT_SEQUENCE=
+/EXCLUDE_EVENTS=
+/GENERATE_MEAN_AND_STDDEV=FALSE
+! /APPEND_TO_EXISTING_VALUES=FALSE
+;
+
+Open_Report_Template
+!
+! Change this filepath to where you saved the report 
+! template (.rgt) file to allow it to open automatically. 
+! If the filepath call fails it will give you the option 
+! to select the filepath manually.
+!
+/REPORT_TEMPLATE=C:\My Captures\QA- marker position verification\QA_relative marker positions 6monthly reports\rep_QA_relative marker positions.rgt
+;
+
+Switch_to_Report_Mode
+!
+! Selects the 'Reports' tab of the workspace to show the report
+!
+! /SHOW_ANIMATION=FALSE
+! /PAGE_NUMBER=
+;
+
+
